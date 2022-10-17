@@ -1,4 +1,6 @@
-node('walmartnode'){
+@library ('saicharanlibrarylibs') _
+
+node{
     
    def mavenHome = tool name: "maven3.8.6"
 
@@ -9,6 +11,7 @@ node('walmartnode'){
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])  
    
    stage('gitcheckout'){
+       sendSlackNotifications('STARTED')
        git branch: 'development', credentialsId: '7bdfbcb1-6752-45c2-a687-a31534fbe2bf', url: 'https://github.com/saicharan484/maven-web-application.git'
     }
 
