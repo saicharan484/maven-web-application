@@ -10,9 +10,12 @@ node{
 
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])  
    
+ parameters {
+  choice choices: ['master', 'development', 'stage', 'uat', 'production'], description: 'this are all the branches', name: 'BranchName'
+}
    stage('gitcheckout'){
        sendSlackNotifications('STARTED')
-       git branch: 'development', credentialsId: '7bdfbcb1-6752-45c2-a687-a31534fbe2bf', url: 'https://github.com/saicharan484/maven-web-application.git'
+       git branch: "${params.BranchName}", credentialsId: '7bdfbcb1-6752-45c2-a687-a31534fbe2bf', url: 'https://github.com/saicharan484/maven-web-application.git'
     }
 
    stage('build'){
