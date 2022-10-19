@@ -8,7 +8,7 @@ node{
    echo "The node name is: ${env. NODE_NAME}"
    echo "The build number is: ${env. BUILD_NUMBER}"
 
-   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])  
+  // properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '2', numToKeepStr: '2')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])  
    
  parameters {
   choice choices: ['master', 'development', 'stage', 'uat', 'production'], description: 'this are all the branches', name: 'BranchName'
