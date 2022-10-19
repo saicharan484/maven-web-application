@@ -1,4 +1,4 @@
-@Library ('saicharanlibrarylibs') _
+//@Library ('saicharanlibrarylibs') _
 
 node{
     
@@ -14,7 +14,7 @@ node{
   choice choices: ['master', 'development', 'stage', 'uat', 'production'], description: 'this are all the branches', name: 'BranchName'
 }
    stage('gitcheckout'){
-       sendSlackNotifications('STARTED')
+       //sendSlackNotifications('STARTED')
        git branch: "${params.BranchName}", credentialsId: '7bdfbcb1-6752-45c2-a687-a31534fbe2bf', url: 'https://github.com/saicharan484/maven-web-application.git'
     }
 
